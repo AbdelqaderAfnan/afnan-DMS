@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Doc_date extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'date_sent',
+        'date_received',
+        'date_edited',
+        'expiration_date',
+    ];
+    
 }
