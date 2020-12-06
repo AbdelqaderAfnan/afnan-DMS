@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User_profile;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth; 
 class UserProfileController extends Controller
 {
     /**
@@ -14,9 +14,8 @@ class UserProfileController extends Controller
      */
     public function index()
     {
-        $User_profile = User_profile::latest()->paginate(5);
-        return view('User_profile.index',compact('User_profile'))
-           ->with('i', (request()->input('page', 1) - 1) * 5);
+        $User_profile = User_profile::where('user_id', Auth::id())->get();
+        return view('User_profile.index',compact('User_profile'));
     }
 
     /**
