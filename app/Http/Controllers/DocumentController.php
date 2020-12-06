@@ -14,7 +14,8 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        //
+        $Document = Document::latest();
+        return view('Document.index',['document'=>$Document]);
     }
 
     /**
@@ -24,7 +25,7 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        //
+        return view('Document.create');
     }
 
     /**
@@ -35,7 +36,17 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'doc_type'      => 'required',
+            'date'          => 'required',
+            'doc_traffic'   => 'required',
+            'profile_id'    => 'required',
+            'subject'       => 'required',
+            'priority_level'=> 'required',
+            'status'        => 'required',
+        ]);
+        Document::create($request()->all());
+        return redirect()->route('Document.index');
     }
 
     /**
@@ -46,7 +57,7 @@ class DocumentController extends Controller
      */
     public function show(Document $document)
     {
-        //
+        return view('Document.show',['Document'=>$Document]);
     }
 
     /**
@@ -57,7 +68,7 @@ class DocumentController extends Controller
      */
     public function edit(Document $document)
     {
-        //
+        return view('Document.edit',['Document'=>$Document]);
     }
 
     /**
@@ -69,7 +80,10 @@ class DocumentController extends Controller
      */
     public function update(Request $request, Document $document)
     {
-        //
+        $Document = Document::findOrFail(request('id'));
+        $Document->fill($request->all())->save();
+        return redirect()->route('Document.show')
+                        ->with('success','Document has been updated');
     }
 
     /**
@@ -80,6 +94,7 @@ class DocumentController extends Controller
      */
     public function destroy(Document $document)
     {
-        //
+        $document->delete();
+        return redirect()->route('Document.index');
     }
 }
