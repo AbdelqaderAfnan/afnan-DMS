@@ -14,7 +14,9 @@ class UserProfileController extends Controller
      */
     public function index()
     {
-        //
+        $User_profile = User_profile::latest()->paginate(5);
+        return view('User_profile.index',compact('User_profile'))
+           ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +26,7 @@ class UserProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('User_profile.add');
     }
 
     /**
