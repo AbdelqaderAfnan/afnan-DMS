@@ -14,7 +14,8 @@ class StatusController extends Controller
      */
     public function index()
     {
-        //
+        $Status = Status::latest();
+        return view('Status.index',['Status'=>$Status]);
     }
 
     /**
@@ -24,7 +25,7 @@ class StatusController extends Controller
      */
     public function create()
     {
-        //
+        return view('Status.create');
     }
 
     /**
@@ -35,7 +36,12 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'viewed'      => 'required',
+            'replied'          => 'required',
+        ]);
+        Status::create($request()->all());
+        return redirect()->route('Status.index');
     }
 
     /**
@@ -46,7 +52,7 @@ class StatusController extends Controller
      */
     public function show(Status $status)
     {
-        //
+        return view('Status.show',['Status'=>$status]);
     }
 
     /**
@@ -57,7 +63,7 @@ class StatusController extends Controller
      */
     public function edit(Status $status)
     {
-        //
+        return view('status.edit',['status'=>$status]);
     }
 
     /**
@@ -69,7 +75,10 @@ class StatusController extends Controller
      */
     public function update(Request $request, Status $status)
     {
-        //
+        $Status = Status::findOrFail(request('id'));
+        $Status->fill($request->all())->save();
+        return redirect()->route('Status.show')
+                        ->with('success','Status has been updated');
     }
 
     /**
@@ -80,6 +89,7 @@ class StatusController extends Controller
      */
     public function destroy(Status $status)
     {
-        //
+        $status->delete();
+        return redirect()->route('Status.index');
     }
 }

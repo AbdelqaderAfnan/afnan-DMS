@@ -57,7 +57,7 @@ class DocumentController extends Controller
      */
     public function show(Document $document)
     {
-        return view('Document.show',['Document'=>$Document]);
+        return view('Document.show',['Document'=>$document]);
     }
 
     /**
@@ -68,7 +68,7 @@ class DocumentController extends Controller
      */
     public function edit(Document $document)
     {
-        return view('Document.edit',['Document'=>$Document]);
+        return view('Document.edit',['Document'=>$document]);
     }
 
     /**

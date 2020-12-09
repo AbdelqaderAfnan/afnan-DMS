@@ -14,7 +14,8 @@ class DocDateController extends Controller
      */
     public function index()
     {
-        //
+        $Doc_date = Doc_date::latest();
+        return view('Doc_date.index',['Doc_date'=>$Doc_date]);
     }
 
     /**
@@ -24,7 +25,7 @@ class DocDateController extends Controller
      */
     public function create()
     {
-        //
+        return view('Doc_date.create');
     }
 
     /**
@@ -35,7 +36,14 @@ class DocDateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'date_sent'         => 'required',
+            'date_received'     => 'required',
+            'date_edited'       => 'required',
+            'expiration_date'   => 'required',
+        ]);
+        Doc_date::create($request()->all());
+        return redirect()->route('Doc_date.index');
     }
 
     /**
@@ -46,7 +54,7 @@ class DocDateController extends Controller
      */
     public function show(Doc_date $doc_date)
     {
-        //
+        return view('Doc_date.show',['Doc_date'=>$Doc_date]);
     }
 
     /**
@@ -57,7 +65,7 @@ class DocDateController extends Controller
      */
     public function edit(Doc_date $doc_date)
     {
-        //
+        return view('Doc_date.edit',['Doc_date'=>$Doc_date]);
     }
 
     /**
@@ -69,7 +77,10 @@ class DocDateController extends Controller
      */
     public function update(Request $request, Doc_date $doc_date)
     {
-        //
+        $Doc_date = Doc_date::findOrFail(request('id'));
+        $Doc_date->fill($request->all())->save();
+        return redirect()->route('Doc_date.show')
+                        ->with('success','Doc_date has been updated');
     }
 
     /**
@@ -80,6 +91,7 @@ class DocDateController extends Controller
      */
     public function destroy(Doc_date $doc_date)
     {
-        //
+        $doc_date->delete();
+        return redirect()->route('Doc_date.index');
     }
 }

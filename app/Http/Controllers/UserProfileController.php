@@ -21,7 +21,7 @@ class UserProfileController extends Controller
         
         if($User_profile==NULL)
         {
-            $dd=User_profile::create(['user_id'=>$user_id]);
+            User_profile::create(['user_id'=>$user_id]);
             
         }
         
@@ -59,7 +59,7 @@ class UserProfileController extends Controller
      */
     public function show(User_profile $user_profile)
     {
-        //
+        return view('user_profile.show',['user_profile'=>$user_profile]);
     }
 
     /**
@@ -96,6 +96,7 @@ class UserProfileController extends Controller
      */
     public function destroy(User_profile $user_profile)
     {
-        //
+        $user_profile->delete();
+        return redirect()->route('user_profile.index');
     }
 }
