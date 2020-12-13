@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('main_website.index');
-});
-
+})->name('home');
+Route::get('/contact-us', function () {
+    return view('main_website.contact-us');
+})->name('contact-us');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 Route::resource('user_profile', App\Http\Controllers\UserProfileController::class);
