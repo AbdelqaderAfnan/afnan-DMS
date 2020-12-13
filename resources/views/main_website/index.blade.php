@@ -57,14 +57,8 @@ ul#horizontal-list li {
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-4">
-            <p>test</p>
-        </div>
-        <div class="col-sm-4">
-            <p>test</p>
-        </div>
-        <div class="col-sm-4">
-            <p>test</p>
+        <div class="col-sm-12">
+            
         </div>
     </div>
 </div>
