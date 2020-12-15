@@ -58,9 +58,9 @@
                             <div class="table">
                                 <ul id="horizontal-list">
                                 <li><a href="{{route('home')}}">Home</a></li>
-                                <li><a href="#">Our Product</a></li>
-                                <li><a href="#">Our Partner</a></li>
-                                <li><a href="#">About Us</a></li>
+                                <li><a href="{{route('our-product.index')}}">Our Product</a></li>
+                                <li><a href="{{route('our-partner.index')}}">Our Partner</a></li>
+                                <li><a href="{{route('about-us')}}">About Us</a></li>
                                 <li><a href="{{route('contact-us')}}">Contat Us</a></li>
                                 </ul>
                             </div>
