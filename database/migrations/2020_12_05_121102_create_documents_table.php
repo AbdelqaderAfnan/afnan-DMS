@@ -15,13 +15,13 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->string('doc_type',150);
-            $table->integer('date_id');
-            $table->string('doc_traffic',150);
-            $table->integer('profile_id');
-            $table->string('subject',150);
-            $table->string('priority_level',150);
-            $table->integer('status');
+            $table->string('doc_type',150)->nullable();
+            $table->integer('date_id')->nullable();
+            $table->string('doc_traffic',150)->nullable();
+            $table->integer('profile_id')->nullable();
+            $table->string('subject',150)->nullable();
+            $table->string('priority_level',150)->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

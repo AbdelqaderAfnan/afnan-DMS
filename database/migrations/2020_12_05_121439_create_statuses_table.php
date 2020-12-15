@@ -15,8 +15,8 @@ class CreateStatusesTable extends Migration
     {
         Schema::create('statuses', function (Blueprint $table) {
             $table->id();
-            $table->boolean('viewed');
-            $table->boolean('replied');
+            $table->boolean('viewed')->nullable();
+            $table->boolean('replied')->nullable();
             $table->timestamps();
         });
     }
