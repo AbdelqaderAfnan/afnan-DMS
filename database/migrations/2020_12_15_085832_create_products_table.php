@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->timestamps();
             $table->string('product_name',100)->nullable();
             $table->string('dosage',100)->nullable();
-            $table->string('country of origin',100)->nullable();
+            $table->string('country_of_origin',100)->nullable();
         });
     }
 

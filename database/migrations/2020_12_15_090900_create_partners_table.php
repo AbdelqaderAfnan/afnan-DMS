@@ -16,6 +16,7 @@ class CreatePartnersTable extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('product_name',100)->nullable();
         });
     }
 

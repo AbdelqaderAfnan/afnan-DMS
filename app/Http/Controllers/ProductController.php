@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('main_website.index',compact('Product'));
     }
 
     /**
@@ -24,7 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('cpanel.product.create');
     }
 
     /**
@@ -35,7 +35,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Product_name'        => 'required',
+            'dosage'              => 'required',
+            'country_of_origin'   => 'required',
+            
+        ]);
+        Product::create($request()->all());
+        return redirect()->route('cpanel.product.index');
     }
 
     /**
@@ -46,7 +53,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('cpanel.product.show',['Product'=>$product]);
     }
 
     /**
@@ -57,7 +64,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('cpanel.product.edit',['Product'=>$product]);
     }
 
     /**
@@ -69,7 +76,10 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product = Product::findOrFail(request('id'));
+        $product->fill($request->all())->save();
+        return redirect()->route('cpanel.product.show')
+                        ->with('success','Product has been updated');
     }
 
     /**
@@ -80,6 +90,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('cpanel.product.index');
     }
 }

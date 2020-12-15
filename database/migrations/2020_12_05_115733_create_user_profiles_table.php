@@ -17,11 +17,11 @@ class CreateUserProfilesTable extends Migration
             $table->id();
             $table->integer('user_id')->nullable();
             $table->integer('branch_id')->nullable();
-            $table->string('name',30)->nullable();
+            $table->string('name',100)->nullable();
             $table->date('birthday')->nullable();
-            $table->string('address',30)->nullable();
+            $table->string('address',100)->nullable();
             $table->integer('phone_number')->nullable();
-            $table->string('position',30)->nullable();
+            $table->string('position',100)->nullable();
             $table->text('image')->nullable();
             $table->timestamps();
         });
