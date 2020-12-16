@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\User_profile;
+use App\Models\Profile;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class UserProfileFactory extends Factory
+class ProfileFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = User_profile::class;
+    protected $model = Profile::class;
 
     /**
      * Define the model's default state.

@@ -52,6 +52,7 @@ class StatusController extends Controller
      */
     public function show(Status $status)
     {
+        dd("hi");
         return view('Status.show',['Status'=>$status]);
     }
 
