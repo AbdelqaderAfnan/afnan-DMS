@@ -59,7 +59,7 @@ class ProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
+    public function show()
     {
         $user_id=Auth::user()->id;
         $checkuser = DB::table('profiles')->where('user_id', $user_id)->first();
@@ -67,6 +67,7 @@ class ProfileController extends Controller
         {
             Profile::create(['user_id'=>$user_id]); 
         }
+        $profile = DB::table('profiles')->where('user_id', $user_id)->first();
         return view('User_profile.show',['profile'=>$profile]);
 
     }
